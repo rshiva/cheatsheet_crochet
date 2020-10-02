@@ -1,0 +1,16 @@
+<%= form_for( @cheatsheet , local: true) do |f| %>
+<div>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+<br>
+<br>
+<div>
+  <%= f.fields_for :stitches do |s|%>
+    <%= render "stitches", f: s%>
+  <% end %>
+  <%= link_to_add_fields "Add Stitch", f, :stitches %>
+</div>
+<br>
+<%= f.submit("Submit")%>
+<% end %>

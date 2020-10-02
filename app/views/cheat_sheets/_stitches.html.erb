@@ -1,0 +1,13 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy %>
+  <div>
+    <%= f.label :total_stitch %>
+    <%= f.number_field :total_stitch %>
+  </div>
+<br>
+<div>
+  <%= f.label :stitch_type%>
+  <%= f.collection_select :master_stitch_id, MasterStitch.all, :id, :name, prompt: true %>
+</div>
+  <%= link_to "Remove", '#', class: "remove_fields" %>
+</div>

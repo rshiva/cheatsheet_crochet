@@ -1,0 +1,10 @@
+<% if @cheatsheet%>
+  <h1><%= @cheatsheet.title%></h1>
+  <br>
+  <% @cheatsheet.stitches.each do |stitch| %>
+  <strong>Total Number of stitch:</strong> <%= stitch.total_stitch %> <br>
+  <strong>Stitch Type:</strong> <%= stitch.master_stitch.name %>
+  <% end %>
+<% end %>
+<br>
+<%= link_to  "Download", download_path(id: @cheatsheet.id) %>
