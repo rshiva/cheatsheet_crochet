@@ -9,6 +9,11 @@ class CheatSheetsController < ApplicationController
     @cheatsheet  = CheatSheet.new
   end
 
+  def show
+    @cheatsheet = CheatSheet.find(params[:id])
+    @download = true
+  end
+
   def create
     @cheatsheet = CheatSheet.create(cheat_sheet_params)
     if @cheatsheet.save
@@ -18,10 +23,22 @@ class CheatSheetsController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @cheatsheet = CheatSheet.find(params[:id])
-    @download = true
   end
+
+  def update
+    @cheatsheet = CheatSheet.find(params[:id])
+    if @cheatsheet.update(cheat_sheet_params)
+      redirect_to @cheatsheet, notice: "cheatsheet was updated successfully"
+    else
+      render :edit
+    end
+  end
+
+  
+
+
 
   def download
     @cheatsheet = CheatSheet.find(params[:id])
@@ -31,7 +48,7 @@ class CheatSheetsController < ApplicationController
   private
 
   def cheat_sheet_params
-    params.required(:cheat_sheet).permit(:title,
+    params.required(:cheat_sheet).permit(:title,:instruction,
                                   stitches_attributes: [:id, :master_stitch_id, :total_stitch , :_destroy])
   end
 end

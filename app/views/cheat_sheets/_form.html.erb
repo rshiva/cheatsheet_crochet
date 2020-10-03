@@ -1,0 +1,26 @@
+<%= tinymce_assets %>
+<div class="cheatsheet-form">
+  <%= form_for( @cheatsheet , local: true) do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :instruction %>
+    <%= f.text_area :instruction, :class => "tinymce", :rows => 40, :cols => 120 %>
+  </div>
+  <br>
+  <br>
+  <div>
+    <%= f.fields_for :stitches do |s|%>
+      <%= render "stitches", f: s%>
+    <% end %>
+    <%= link_to_add_fields "Add Stitch", f, :stitches %>
+  </div>
+  <br>
+  <%= f.submit("Submit")%>
+  <% end %>
+</div>
+
+<%= tinymce  %>

@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+//= require tinymce
 
 
 
@@ -19,3 +20,4 @@ require("channels")
 
 require("./nested_forms/addFields");
 require("./nested_forms/removeFields");
+

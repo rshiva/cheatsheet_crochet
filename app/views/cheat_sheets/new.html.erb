@@ -1,16 +1,5 @@
-<%= form_for( @cheatsheet , local: true) do |f| %>
+<h1>Let's Create a Awesome CheatSheet, to help people</h1>
+<%= render  "form" %>
 <div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= link_to  "Home", cheat_sheets_path%>
 </div>
-<br>
-<br>
-<div>
-  <%= f.fields_for :stitches do |s|%>
-    <%= render "stitches", f: s%>
-  <% end %>
-  <%= link_to_add_fields "Add Stitch", f, :stitches %>
-</div>
-<br>
-<%= f.submit("Submit")%>
-<% end %>

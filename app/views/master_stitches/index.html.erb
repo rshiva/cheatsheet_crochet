@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Stitches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_stitches.each do |master_stitch| %>
+      <tr>
+        <td><%= master_stitch.name %></td>
+        <td><%= link_to 'Show', master_stitch %></td>
+        <td><%= link_to 'Edit', edit_master_stitch_path(master_stitch) %></td>
+        <td><%= link_to 'Destroy', master_stitch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Stitch', new_master_stitch_path %>

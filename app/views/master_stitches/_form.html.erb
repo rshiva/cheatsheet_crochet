@@ -1,0 +1,22 @@
+<%= form_with(model: master_stitch, local: true) do |form| %>
+  <% if master_stitch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_stitch.errors.count, "error") %> prohibited this master_stitch from being saved:</h2>
+
+      <ul>
+        <% master_stitch.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
