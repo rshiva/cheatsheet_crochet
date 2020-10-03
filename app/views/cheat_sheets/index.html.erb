@@ -1,0 +1,6 @@
+<% @cheatsheets.each do |cheatsheet|%>
+<div>
+  <%= link_to  "#{cheatsheet.title}", cheatsheet %>
+  <%= link_to  "Download", download_path(id: cheatsheet.id) %>
+</<div>
+<%end%>

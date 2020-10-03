@@ -1,10 +1,40 @@
 <% if @cheatsheet%>
-  <h1><%= @cheatsheet.title%></h1>
-  <br>
-  <% @cheatsheet.stitches.each do |stitch| %>
-  <strong>Total Number of stitch:</strong> <%= stitch.total_stitch %> <br>
-  <strong>Stitch Type:</strong> <%= stitch.master_stitch.name %>
-  <% end %>
+<div class="cheatsheet-table">
+  <table class="customTable">
+    <thead>
+      <tr>
+        <%= image_tag wicked_pdf_asset_base64('c_logo.png'), class: "logo-image" %>
+      </tr>
+      <tr>
+        <h1><%= @cheatsheet.title.titleize%></h1>
+        <th>Round</th>
+        <th>Stitch Type</th>
+        <th>Number of stitches</th>
+      </tr>
+    </thead>
+  <tbody>
+    <% @cheatsheet.stitches.each_with_index do |stitch,index| %>
+      <tr>
+        <td><%= index+1%></td>
+        <td><%= stitch.master_stitch.name.titleize%></td>
+        <td><%= stitch.total_stitch %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>
 <% end %>
+  
 <br>
-<%= link_to  "Download", download_path(id: @cheatsheet.id) %>
+<% if @download%>
+  <%= link_to  "Download", download_path(id: @cheatsheet.id) %>
+<% end %>
+
+<div class="follow-me">
+  Follow me on:
+  <a href="https://www.instagram.com/crafttistory/"><%= image_tag wicked_pdf_asset_base64 "instagram.png" %></a>
+  <a href="https://www.youtube.com/channel/UCXuR6m3P_VDAuHOusziiTig/featured"><%= image_tag wicked_pdf_asset_base64 "youtube.png" %></a>
+  <a href="https://www.facebook.com/crafttistory"><%= image_tag wicked_pdf_asset_base64 "facebook.png" %></a>
+  <a href="https://www.twitter.com/crafttistory/"><%= image_tag wicked_pdf_asset_base64 "twitter.png" %></a>
+<div>
+

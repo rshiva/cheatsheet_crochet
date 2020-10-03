@@ -6,14 +6,11 @@ class CheatSheetsController < ApplicationController
   end
 
   def new
-    # render json: {name: "hello"}
     @cheatsheet  = CheatSheet.new
   end
 
   def create
-    puts "[----params--",cheat_sheet_params
     @cheatsheet = CheatSheet.create(cheat_sheet_params)
-    puts "object",@cheatsheet.stitches.inspect
     if @cheatsheet.save
       redirect_to @cheatsheet, notice: "cheatsheet was created successfully"
     else
@@ -23,17 +20,12 @@ class CheatSheetsController < ApplicationController
 
   def show
     @cheatsheet = CheatSheet.find(params[:id])
+    @download = true
   end
 
   def download
-    puts "params",params
     @cheatsheet = CheatSheet.find(params[:id])
-    html = render_to_string(:action => :show,template: "cheat_sheets/show.html.erb") 
-    pdf = WickedPdf.new.pdf_from_string(html) 
-
-    send_data(pdf, 
-      :filename => "#{@cheatsheet.title}.pdf", 
-      :disposition => 'attachment') 
+    render pdf: "#{@cheatsheet.title}.pdf",  template: "cheat_sheets/show.pdf.erb",layout: "pdf.html", page_size: "A4"
   end
 
   private
