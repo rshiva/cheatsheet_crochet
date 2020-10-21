@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_203839) do
+ActiveRecord::Schema.define(version: 2020_10_21_141833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(version: 2020_10_03_203839) do
   end
 
   create_table "stitches", force: :cascade do |t|
-    t.bigint "master_stitch_id", null: false
     t.integer "total_stitch"
     t.bigint "cheat_sheet_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "master_stitch_id", null: false
     t.index ["cheat_sheet_id"], name: "index_stitches_on_cheat_sheet_id"
     t.index ["master_stitch_id"], name: "index_stitches_on_master_stitch_id"
   end
 
   add_foreign_key "stitches", "cheat_sheets"
+  add_foreign_key "stitches", "master_stitches"
 end
